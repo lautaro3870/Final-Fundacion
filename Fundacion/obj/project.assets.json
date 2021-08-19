@@ -7338,11 +7338,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Proyectos GitHub\\Fundacion Maxi\\Fundacion\\Fundacion.csproj",
+      "projectUniqueName": "C:\\Proyectos GitHub\\Final Fundacion\\Fundacion\\Fundacion.csproj",
       "projectName": "Fundacion",
-      "projectPath": "C:\\Proyectos GitHub\\Fundacion Maxi\\Fundacion\\Fundacion.csproj",
+      "projectPath": "C:\\Proyectos GitHub\\Final Fundacion\\Fundacion\\Fundacion.csproj",
       "packagesPath": "C:\\Users\\Win\\.nuget\\packages\\",
-      "outputPath": "C:\\Proyectos GitHub\\Fundacion Maxi\\Fundacion\\obj\\",
+      "outputPath": "C:\\Proyectos GitHub\\Final Fundacion\\Fundacion\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

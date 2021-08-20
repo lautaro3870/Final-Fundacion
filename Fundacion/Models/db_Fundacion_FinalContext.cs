@@ -31,8 +31,8 @@ namespace Fundacion.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-
-                optionsBuilder.UseSqlServer("Server=25.89.73.124;Database=db_Fundacion_Final;User ID=lautaro;Password=1234;Trusted_Connection=false;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=25.89.73.124;Database=db_Fundacion_Final;Trusted_Connection=True;");
             }
         }
 
@@ -129,7 +129,15 @@ namespace Fundacion.Models
             {
                 entity.ToTable("Personal");
 
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Nombre).HasMaxLength(255);
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Sector).HasMaxLength(255);
 

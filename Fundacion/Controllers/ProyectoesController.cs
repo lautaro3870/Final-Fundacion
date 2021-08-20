@@ -22,10 +22,11 @@ namespace Fundacion.Controllers
         //    _context = context;
         //}
 
-        // GET: api/Proyectoes
-        [HttpGet]
+        //GET: api/Proyectoes
+        [HttpGet("GetProyectos")]
         public async Task<ActionResult<IEnumerable<Proyecto>>> GetProyectos()
         {
+
             return await _context.Proyectos.ToListAsync();
         }
 
@@ -45,39 +46,107 @@ namespace Fundacion.Controllers
 
         // PUT: api/Proyectoes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProyecto(int id, Proyecto proyecto)
-        {
-            if (id != proyecto.Id)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutProyecto(int id, Proyecto proyecto)
+        //{
+        //    if (id != proyecto.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(proyecto).State = EntityState.Modified;
+        //    _context.Entry(proyecto).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProyectoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!ProyectoExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
+
+
+        //Revisar el put: al querer actualizar un proyecto con el mismo idArea que ya tiene, salta un error 500
+
+        //[HttpPut]
+        //public async Task<ActionResult<Proyecto>> Put2 (UpdateProyecto comando)
+        //{
+        //    var proyecto = await _context.Proyectos.FindAsync(comando.Id);
+
+        //    if(proyecto == null)
+        //    {
+        //        return NotFound("Proyecto no encontrado");
+        //    }
+
+
+        //    proyecto.Titulo = comando.Titulo;
+        //    proyecto.PaisRegion = comando.PaisRegion;
+        //    proyecto.Contratante = comando.Contratante;
+
+        //    if (comando.ListaPersonal != null)
+        //    {
+        //        var personal = _context.EquipoXproyectos.Where(x => x.IdProyecto == comando.Id);
+
+        //        foreach (var x in personal)
+        //        {
+        //            _context.EquipoXproyectos.Remove(x);
+        //        }
+
+        //        foreach (var id in comando.ListaPersonal)
+        //        {
+        //            var equipoXproyecto = new EquipoXproyecto
+        //            {
+        //                IdPersonal = id,
+        //                IdProyecto = comando.Id
+        //            };
+        //            _context.EquipoXproyectos.Add(equipoXproyecto);
+        //        }
+        //    }
+
+        //    if (comando.ListaAreas != null)
+        //    {
+        //        var aereas = _context.EquipoXproyectos.Where(x => x.IdProyecto == comando.Id);
+
+        //        foreach (var x in aereas)
+        //        {
+        //            _context.EquipoXproyectos.Remove(x);
+        //        }
+
+        //        foreach (var id in comando.ListaAreas)
+        //        {
+        //            var areaXproyecto = new AreasxProyecto
+        //            {
+        //                IdArea = id,
+        //                IdProyecto = comando.Id
+        //            };
+        //            _context.AreasxProyectos.Add(areaXproyecto);
+        //        }
+        //    }
+
+        //    //_context.Proyectos.Update(proyecto);
+        //    _context.SaveChanges();
+
+        //    return proyecto;
+        //}
+
+
+
+
 
         // POST: api/Proyectoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Proyecto>> PostProyecto(InsertarProyecto comando)
+        public async Task<ActionResult<ResultadosApi>> PostProyecto(InsertarProyecto comando)
         {
             //_context.Proyectos.Add(proyecto);
             //await _context.SaveChangesAsync();
@@ -86,74 +155,82 @@ namespace Fundacion.Controllers
 
             var resultado = new ResultadosApi();
 
-            var proyecto = new Proyecto
+            try
             {
-                //IdArea = comando.IdArea,
-                Titulo = comando.Titulo,
-                PaisRegion = comando.PaisRegion,
-                Contratante = comando.Contratante,
-                Dirección = comando.Dirección,
-                MontoContrato = comando.MontoContrato,
-                NroContrato = comando.NroContrato,
-                MesInicio = comando.MesInicio,
-                AnioInicio = comando.AnioInicio,
-                MesFinalizacion = comando.MesFinalizacion,
-                AnioFinalizacion = comando.AnioFinalizacion,
-                ConsultoresAsoc = comando.ConsultoresAsoc,
-                Descripcion = comando.Descripcion,
-                Resultados = comando.Resultados,
-                FichaLista = comando.FichaLista,
-                EnCurso = comando.EnCurso,
-                Departamento = comando.Departamento,
-                Moneda = comando.Moneda,
-                CertConformidad = comando.CertConformidad,
-                CertificadoPor = comando.CertificadoPor
-
-
-
-            };
-
-            _context.Proyectos.Add(proyecto);
-
-            await _context.SaveChangesAsync();
-
-
-            if (comando.ListaPersonal != null)
-            {
-                foreach(var id in comando.ListaPersonal)
+                var proyecto = new Proyecto
                 {
-                    var equipoXproyecto = new EquipoXproyecto
-                    {
-                        IdPersonal = id,
-                        IdProyecto = proyecto.Id
-                    };
-                    _context.EquipoXproyectos.Add(equipoXproyecto);
-                }
-            }
+                    //IdArea = comando.IdArea,
+                    Titulo = comando.Titulo,
+                    PaisRegion = comando.PaisRegion,
+                    Contratante = comando.Contratante,
+                    Dirección = comando.Dirección,
+                    MontoContrato = comando.MontoContrato,
+                    NroContrato = comando.NroContrato,
+                    MesInicio = comando.MesInicio,
+                    AnioInicio = comando.AnioInicio,
+                    MesFinalizacion = comando.MesFinalizacion,
+                    AnioFinalizacion = comando.AnioFinalizacion,
+                    ConsultoresAsoc = comando.ConsultoresAsoc,
+                    Descripcion = comando.Descripcion,
+                    Resultados = comando.Resultados,
+                    FichaLista = comando.FichaLista,
+                    EnCurso = comando.EnCurso,
+                    Departamento = comando.Departamento,
+                    Moneda = comando.Moneda,
+                    CertConformidad = comando.CertConformidad,
+                    CertificadoPor = comando.CertificadoPor
 
-            if (comando.ListaAreas != null)
-            {
-                foreach (var id in comando.ListaAreas)
+
+
+                };
+
+                _context.Proyectos.Add(proyecto);
+
+                await _context.SaveChangesAsync();
+
+
+                if (comando.ListaPersonal != null)
                 {
-                    var areaXproyecto = new AreasxProyecto
+                    foreach (var id in comando.ListaPersonal)
                     {
-                        IdArea = id,
-                        IdProyecto = proyecto.Id
-                    };
-                    _context.AreasxProyectos.Add(areaXproyecto);
+                        var equipoXproyecto = new EquipoXproyecto
+                        {
+                            IdPersonal = id,
+                            IdProyecto = proyecto.Id
+                        };
+                        _context.EquipoXproyectos.Add(equipoXproyecto);
+                    }
                 }
-            }
 
-            await _context.SaveChangesAsync();
+                if (comando.ListaAreas != null)
+                {
+                    foreach (var id in comando.ListaAreas)
+                    {
+                        var areaXproyecto = new AreasxProyecto
+                        {
+                            IdArea = id,
+                            IdProyecto = proyecto.Id
+                        };
+                        _context.AreasxProyectos.Add(areaXproyecto);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+
+                resultado.Ok = true;
+                resultado.Return = proyecto;
+                return resultado;
+
+            } catch (Exception e)
+            {
+                resultado.Ok = false;
+                resultado.CodigoError = 4;
+                return resultado;
             
-
-            return proyecto;
+            }
 
 
         }
-
-
-
 
         
         // DELETE: api/Proyectoes/5
@@ -176,5 +253,15 @@ namespace Fundacion.Controllers
         {
             return _context.Proyectos.Any(e => e.Id == id);
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Proyecto>>> GetConsulta()
+        {
+            var proyecto = await _context.Proyectos.Include(x => x.AreasxProyectos).Include(x => x.EquipoXproyectos).ToListAsync();
+
+            return proyecto;
+
+        }
+
     }
 }

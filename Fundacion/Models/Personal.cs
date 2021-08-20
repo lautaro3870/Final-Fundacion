@@ -16,6 +16,9 @@ namespace Fundacion.Models
         public string Nombre { get; set; }
         public string Titulo { get; set; }
         public string Sector { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public bool? Activo { get; set; }
 
         public virtual ICollection<EquipoXproyecto> EquipoXproyectos { get; set; }
     }

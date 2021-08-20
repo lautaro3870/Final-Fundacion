@@ -8,7 +8,7 @@ namespace Fundacion.Comandos
 {
     public class InsertarProyecto
     {
-        public int? IdArea { get; set; } //puede ser nulo
+        //public int? IdArea { get; set; } //puede ser nulo
         public string Titulo { get; set; }
         
         public string PaisRegion { get; set; }

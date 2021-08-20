@@ -88,7 +88,7 @@ namespace Fundacion.Controllers
 
             var proyecto = new Proyecto
             {
-                IdArea = comando.IdArea,
+                //IdArea = comando.IdArea,
                 Titulo = comando.Titulo,
                 PaisRegion = comando.PaisRegion,
                 Contratante = comando.Contratante,
@@ -131,18 +131,18 @@ namespace Fundacion.Controllers
                 }
             }
 
-            //if (comando.ListaAreas != null)
-            //{
-            //    foreach (var id in comando.ListaAreas)
-            //    {
-            //        var areaXproyecto = new AreasxProyecto
-            //        {
-            //            IdArea = id,
-            //            IdProyecto = proyecto.Id
-            //        };
-            //        _context.AreasxProyectos.Add(areaXproyecto);
-            //    }
-            //}
+            if (comando.ListaAreas != null)
+            {
+                foreach (var id in comando.ListaAreas)
+                {
+                    var areaXproyecto = new AreasxProyecto
+                    {
+                        IdArea = id,
+                        IdProyecto = proyecto.Id
+                    };
+                    _context.AreasxProyectos.Add(areaXproyecto);
+                }
+            }
 
             await _context.SaveChangesAsync();
             

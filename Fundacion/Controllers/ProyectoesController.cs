@@ -78,66 +78,66 @@ namespace Fundacion.Controllers
 
         //Revisar el put: al querer actualizar un proyecto con el mismo idArea que ya tiene, salta un error 500
 
-        //[HttpPut]
-        //public async Task<ActionResult<Proyecto>> Put2 (UpdateProyecto comando)
-        //{
-        //    var proyecto = await _context.Proyectos.FindAsync(comando.Id);
+        [HttpPut]
+        public async Task<ActionResult<Proyecto>> Put2 (UpdateProyecto comando)
+        {
+            var proyecto = await _context.Proyectos.FindAsync(comando.Id);
 
-        //    if(proyecto == null)
-        //    {
-        //        return NotFound("Proyecto no encontrado");
-        //    }
+            if(proyecto == null)
+            {
+                return NotFound("Proyecto no encontrado");
+            }
 
 
-        //    proyecto.Titulo = comando.Titulo;
-        //    proyecto.PaisRegion = comando.PaisRegion;
-        //    proyecto.Contratante = comando.Contratante;
+            proyecto.Titulo = comando.Titulo;
+            proyecto.PaisRegion = comando.PaisRegion;
+            proyecto.Contratante = comando.Contratante;
 
-        //    if (comando.ListaPersonal != null)
-        //    {
-        //        var personal = _context.EquipoXproyectos.Where(x => x.IdProyecto == comando.Id);
+            if (comando.ListaPersonal != null)
+            {
+                var personal = _context.EquipoXproyectos.Where(x => x.IdProyecto == comando.Id);
 
-        //        foreach (var x in personal)
-        //        {
-        //            _context.EquipoXproyectos.Remove(x);
-        //        }
+                foreach (var x in personal)
+                {
+                    _context.EquipoXproyectos.Remove(x);
+                }
 
-        //        foreach (var id in comando.ListaPersonal)
-        //        {
-        //            var equipoXproyecto = new EquipoXproyecto
-        //            {
-        //                IdPersonal = id,
-        //                IdProyecto = comando.Id
-        //            };
-        //            _context.EquipoXproyectos.Add(equipoXproyecto);
-        //        }
-        //    }
+                foreach (var id in comando.ListaPersonal)
+                {
+                    var equipoXproyecto = new EquipoXproyecto
+                    {
+                        IdPersonal = id,
+                        IdProyecto = comando.Id
+                    };
+                    _context.EquipoXproyectos.Add(equipoXproyecto);
+                }
+            }
 
-        //    if (comando.ListaAreas != null)
-        //    {
-        //        var aereas = _context.EquipoXproyectos.Where(x => x.IdProyecto == comando.Id);
+            if (comando.ListaAreas != null)
+            {
+                var aereas = _context.AreasxProyectos.Where(x => x.IdProyecto == comando.Id);
 
-        //        foreach (var x in aereas)
-        //        {
-        //            _context.EquipoXproyectos.Remove(x);
-        //        }
+                foreach (var x in aereas)
+                {
+                    _context.AreasxProyectos.Remove(x);
+                }
 
-        //        foreach (var id in comando.ListaAreas)
-        //        {
-        //            var areaXproyecto = new AreasxProyecto
-        //            {
-        //                IdArea = id,
-        //                IdProyecto = comando.Id
-        //            };
-        //            _context.AreasxProyectos.Add(areaXproyecto);
-        //        }
-        //    }
+                foreach (var id in comando.ListaAreas)
+                {
+                    var areaXproyecto = new AreasxProyecto
+                    {
+                        IdArea = id,
+                        IdProyecto = comando.Id
+                    };
+                    _context.AreasxProyectos.Add(areaXproyecto);
+                }
+            }
 
-        //    //_context.Proyectos.Update(proyecto);
-        //    _context.SaveChanges();
+            //_context.Proyectos.Update(proyecto);
+            _context.SaveChanges();
 
-        //    return proyecto;
-        //}
+            return proyecto;
+        }
 
 
 

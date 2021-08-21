@@ -12,7 +12,6 @@ namespace Fundacion.Comandos
         public string Titulo { get; set; }
         public string PaisRegion { get; set; }
         public string Contratante { get; set; }
-
         public List<int> ListaPersonal { get; set; }
         public List<int> ListaAreas { get; set; }
 

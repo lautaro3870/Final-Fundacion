@@ -6,11 +6,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Fundacion.Models;
+using Fundacion.Comandos;
+using Fundacion.Resultados;
+using Microsoft.AspNetCore.Cors;
 
 namespace Fundacion.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("Prog3")]
     public class PersonalsController : ControllerBase
     {
         private readonly db_Fundacion_FinalContext _context = new db_Fundacion_FinalContext();
@@ -74,13 +78,50 @@ namespace Fundacion.Controllers
 
         // POST: api/Personals
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Personal>> PostPersonal(Personal personal)
+        [HttpPost("Login")]
+        public async Task<ActionResult<ResultadosApi>> Login([FromBody]InsertarPersonal cmd)
         {
-            _context.Personals.Add(personal);
-            await _context.SaveChangesAsync();
+            //_context.Personals.Add(personal);
+            //await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPersonal", new { id = personal.Id }, personal);
+            //return CreatedAtAction("GetPersonal", new { id = personal.Id }, personal);
+
+            var resultado = new ResultadosApi();
+
+            var email = cmd.Email.Trim();
+            var password = cmd.Password;
+
+            try
+            {
+                var personal = await _context.Personals.FirstOrDefaultAsync(x => x.Email.Equals(email) && x.Password.Equals(password));
+                if (personal != null)
+                {
+                    resultado.Ok = true;
+                    resultado.Return = personal;
+                    if (personal.Activo == false)
+                    {
+                        resultado.Error = "Usuario bloqueado";
+                        return resultado;
+                    }
+                    
+                }
+                else
+                {
+                    resultado.Ok = false;
+                    resultado.Error = "Usuario o contraseña incorrectos";
+                }
+                return resultado;
+
+            }
+            catch (Exception ex)
+            {
+                resultado.Ok = false;
+                resultado.Error = "Usuario no encontrado";
+                resultado.CodigoError = 1;
+                return resultado;
+            }
+            
+
         }
 
         // DELETE: api/Personals/5

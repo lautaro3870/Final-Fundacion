@@ -152,6 +152,16 @@ namespace Fundacion.Controllers
             return resultado;
         }
 
+        [HttpGet("GetDeptos")]
+        public ActionResult<ResultadosApi> GetDeptos()
+        {
+            var resultado = new ResultadosApi();
+
+            resultado.Ok = true;
+            resultado.Return = _context.Departamentos.ToList();
+            return resultado;
+        }
+
         // POST: api/Proyectoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F1LHg4T2wUPdQyQLN5ojEY5XY0uTvdJs7dJ313Zn+JyjvEIoMr++GjQI/dDUtYaH1i+qNDwlOsnwhDIL2dNr1w==",
+  "dgSpecHash": "tws64l85eyihtqiBJ9KcDiOwTVkn7S+7ecE/ALfh2Qe0AupemeIhVjbvSUdT6BkesDxZYvOUTpUOhs5MZkuwcQ==",
   "success": true,
-  "projectFilePath": "C:\\Proyectos GitHub\\El mejor\\Fundacion\\Fundacion.csproj",
+  "projectFilePath": "C:\\Proyectos GitHub\\El Repositorio\\Fundacion\\Fundacion.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Win\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Win\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

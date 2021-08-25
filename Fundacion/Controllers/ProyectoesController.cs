@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Fundacion.Models;
 using Fundacion.Resultados;
 using Fundacion.Comandos;
+using Microsoft.AspNetCore.Cors;
 
 namespace Fundacion.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("Prog3")]
     public class ProyectoesController : ControllerBase
     {
         private readonly db_Fundacion_FinalContext _context = new db_Fundacion_FinalContext();
@@ -140,8 +142,15 @@ namespace Fundacion.Controllers
         }
 
 
+        [HttpGet("GetAreas")]
+        public ActionResult<ResultadosApi> GetAreas()
+        {
+            var resultado = new ResultadosApi();
 
-
+            resultado.Ok = true;
+            resultado.Return = _context.Areas.ToList();
+            return resultado;
+        }
 
         // POST: api/Proyectoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

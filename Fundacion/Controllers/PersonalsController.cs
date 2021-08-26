@@ -25,10 +25,23 @@ namespace Fundacion.Controllers
         //}
 
         // GET: api/Personals
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Personal>>> GetPersonals()
+        //{
+
+               
+        //    return await _context.Personals.ToListAsync();
+        //}
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Personal>>> GetPersonals()
+        public ActionResult<ResultadosApi> GetPersonals()
         {
-            return await _context.Personals.ToListAsync();
+            var r = new ResultadosApi();
+            var personas = _context.Personals.ToList();
+            r.Ok = true;
+            r.Return = personas;
+            return r;
+
         }
 
         // GET: api/Personals/5

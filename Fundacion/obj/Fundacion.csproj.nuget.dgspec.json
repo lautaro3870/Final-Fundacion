@@ -1,24 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyectos GitHub\\El Repositorio\\Fundacion\\Fundacion.csproj": {}
+    "C:\\GitProyect\\Final-Fundacion\\Fundacion\\Fundacion.csproj": {}
   },
   "projects": {
-    "C:\\Proyectos GitHub\\El Repositorio\\Fundacion\\Fundacion.csproj": {
+    "C:\\GitProyect\\Final-Fundacion\\Fundacion\\Fundacion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyectos GitHub\\El Repositorio\\Fundacion\\Fundacion.csproj",
+        "projectUniqueName": "C:\\GitProyect\\Final-Fundacion\\Fundacion\\Fundacion.csproj",
         "projectName": "Fundacion",
-        "projectPath": "C:\\Proyectos GitHub\\El Repositorio\\Fundacion\\Fundacion.csproj",
-        "packagesPath": "C:\\Users\\Win\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyectos GitHub\\El Repositorio\\Fundacion\\obj\\",
+        "projectPath": "C:\\GitProyect\\Final-Fundacion\\Fundacion\\Fundacion.csproj",
+        "packagesPath": "C:\\Users\\Maxi Farias\\.nuget\\packages\\",
+        "outputPath": "C:\\GitProyect\\Final-Fundacion\\Fundacion\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Win\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Maxi Farias\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"

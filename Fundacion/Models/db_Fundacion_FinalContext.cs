@@ -32,8 +32,8 @@ namespace Fundacion.Models
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder.UseSqlServer("Server=25.89.73.124;Database=db_Fundacion_Final;Trusted_Connection=True;");
-                //optionsBuilder.UseSqlServer("Server=LAPTOP-9ALNHCMO\\SQLEXPRESS;Database=db_Fundacion_Final;User ID=sa;Password=1234;Trusted_Connection=false;");
+                //optionsBuilder.UseSqlServer("Server=25.89.73.124;Database=db_Fundacion_Final;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-9ALNHCMO\\SQLEXPRESS;Database=db_Fundacion_Final;User ID=sa;Password=1234;Trusted_Connection=false;");
             }
         }
 

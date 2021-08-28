@@ -672,9 +672,6 @@ C:\GitProyect\Final-Fundacion\Fundacion\obj\Debug\net5.0\Fundacion.dll
 C:\GitProyect\Final-Fundacion\Fundacion\obj\Debug\net5.0\ref\Fundacion.dll
 C:\GitProyect\Final-Fundacion\Fundacion\obj\Debug\net5.0\Fundacion.pdb
 C:\GitProyect\Final-Fundacion\Fundacion\obj\Debug\net5.0\Fundacion.genruntimeconfig.cache
-C:\GitProyect\Final-Fundacion\Fundacion\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\GitProyect\Final-Fundacion\Fundacion\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-C:\GitProyect\Final-Fundacion\Fundacion\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 C:\Proyectos GitHub\Final Fundacion\Fundacion\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Proyectos GitHub\Final Fundacion\Fundacion\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Proyectos GitHub\Final Fundacion\Fundacion\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
@@ -817,3 +814,6 @@ C:\Proyectos GitHub\El Repositorio\Fundacion\obj\Debug\net5.0\Fundacion.dll
 C:\Proyectos GitHub\El Repositorio\Fundacion\obj\Debug\net5.0\ref\Fundacion.dll
 C:\Proyectos GitHub\El Repositorio\Fundacion\obj\Debug\net5.0\Fundacion.pdb
 C:\Proyectos GitHub\El Repositorio\Fundacion\obj\Debug\net5.0\Fundacion.genruntimeconfig.cache
+C:\GitProyect\Final-Fundacion\Fundacion\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\GitProyect\Final-Fundacion\Fundacion\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\GitProyect\Final-Fundacion\Fundacion\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

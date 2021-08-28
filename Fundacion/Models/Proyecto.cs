@@ -37,7 +37,7 @@ namespace Fundacion.Models
         public int? CertificadoPor { get; set; }
         public byte[] SsmaTimeStamp { get; set; }
 
-        public virtual ICollection<AreasxProyecto> AreasxProyectos { get; set; }
+        public  ICollection<AreasxProyecto> AreasxProyectos { get; set; }
         public virtual ICollection<EquipoXproyecto> EquipoXproyectos { get; set; }
         public virtual ICollection<PublicacionesXproyecto> PublicacionesXproyectos { get; set; }
     }

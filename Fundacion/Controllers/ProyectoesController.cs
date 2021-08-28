@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Fundacion.Ado;
+using Fundacion.Comandos;
+using Fundacion.Models;
+using Fundacion.Resultados;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Fundacion.Models;
-using Fundacion.Resultados;
-using Fundacion.Comandos;
-using Microsoft.AspNetCore.Cors;
 
 namespace Fundacion.Controllers
 {
@@ -81,11 +81,11 @@ namespace Fundacion.Controllers
         //Revisar el put: al querer actualizar un proyecto con el mismo idArea que ya tiene, salta un error 500
 
         [HttpPut]
-        public async Task<ActionResult<Proyecto>> Put2 (UpdateProyecto comando)
+        public async Task<ActionResult<Proyecto>> Put2(UpdateProyecto comando)
         {
             var proyecto = await _context.Proyectos.FindAsync(comando.Id);
 
-            if(proyecto == null)
+            if (proyecto == null)
             {
                 return NotFound("Proyecto no encontrado");
             }
@@ -240,18 +240,19 @@ namespace Fundacion.Controllers
                 resultado.Return = proyecto;
                 return resultado;
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 resultado.Ok = false;
                 resultado.CodigoError = 4;
                 return resultado;
-            
+
             }
 
 
         }
 
-        
+
         // DELETE: api/Proyectoes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProyecto(int id)
@@ -273,14 +274,76 @@ namespace Fundacion.Controllers
             return _context.Proyectos.Any(e => e.Id == id);
         }
 
+        //[HttpGet]
+        //public async Task<ActionResult<List<Proyecto>>> GetConsulta()
+        //{
+
+        //    //Holaa
+        //    var proyecto = await _context.Proyectos.Include(x => x.AreasxProyectos).Include(x => x.EquipoXproyectos).ToListAsync();
+
+        //    return proyecto;
+
+        //}
+
         [HttpGet]
-        public async Task<ActionResult<List<Proyecto>>> GetConsulta()
+        public ActionResult<ResultadosApi> GetConsulta()
         {
 
-            //Holaa
-            var proyecto = await _context.Proyectos.Include(x => x.AreasxProyectos).Include(x => x.EquipoXproyectos).ToListAsync();
+            var resultado = new ResultadosApi();
+            //var proyecto = await _context.Proyectos.Include(x => x.AreasxProyectos).Include(x => x.EquipoXproyectos).ToListAsync();
+            //var proyecto = await _context.Proyectos.Include(x => x.AreasxProyectos).ThenInclude(x => x.IdAreaNavigation).ToListAsync();
+            //var proyecto =
+            //       from proy in _context.Proyectos
+            //       join ap in _context.AreasxProyectos on proy.Id equals ap.IdProyecto
+            //       join are in _context.Areas on ap.IdArea equals are.Id
+            //       select new { Proy = proy, Ap = ap, Are = are  };
+            //var proyecto = await _context.Database.ExecuteSqlRawAsync("select p.Id, p.Titulo,p.[Pais-region],p.Contratante, a.Area from Proyectos p join AreasxProyecto ap on p.Id = ap.IdProyecto join Areas a on a.Id = ap.IdArea");
 
-            return proyecto;
+
+            //LAUTARO: SI VES EL EXPLORADOR DE SOLUCIONES CREE UNA CARPETA LLAMADA ADO (si, recurri a esa vieja tecnica milenaria)
+            // BUENO AHI ME CREE UNA CLASE CONEXION Y LUEGO UN METODO PARA LEER LA CONSULTA QUE HICE, EN ESTA CLASE AQUI DEBAJO
+            // HICE LA LOGICA PARA PASAR ESOS DATSO EN UNA LISTA Y ASI PODER DEVOLVER ESA LISTA Y MANIPULARLA EN EL FRONT
+            // HA Y CREE UNA CLASE EN COMANDOS LLAMADA CONSULTAPROYECTOS PARA PODER CREAR UN OBJETO CON LOS DATOS
+            // QUE ME TRAJO ESA CONSULTA Y METERLO A ESA LISTA.
+
+            Conexion conexion = new Conexion();
+            ConsultaProyectos p = null;
+
+
+            List<object> lista = new List<object>();
+            conexion.Leer();
+            lista.Clear();
+            while (conexion.Dr.Read())
+            {
+                p = new ConsultaProyectos();
+                if (!conexion.Dr.IsDBNull(0))
+                {
+                    p.Id = conexion.Dr.GetInt32(0);
+                }
+                if (!conexion.Dr.IsDBNull(1))
+                {
+                    p.Titulo = conexion.Dr.GetString(1);
+                }
+                if (!conexion.Dr.IsDBNull(2))
+                {
+                    p.PaisRegion = conexion.Dr.GetString(2);
+                }
+                if (!conexion.Dr.IsDBNull(3))
+                {
+                    p.Contratante = conexion.Dr.GetString(3);
+                }
+                if (!conexion.Dr.IsDBNull(4))
+                {
+                    p.Area = conexion.Dr.GetString(4);
+                }
+                lista.Add(p);
+            }
+            conexion.CerrarConexion();
+            resultado.Ok = true;
+            resultado.Return = lista;
+            return resultado;
+
+
 
         }
 

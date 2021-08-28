@@ -10,7 +10,7 @@ namespace Fundacion.Models
         public int IdProyecto { get; set; }
         public int IdArea { get; set; }
 
-        public virtual Area IdAreaNavigation { get; set; }
+        public  Area IdAreaNavigation { get; set; }
         public virtual Proyecto IdProyectoNavigation { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace Fundacion.Models
         public int Id { get; set; }
         public string Area1 { get; set; }
 
-        public virtual ICollection<AreasxProyecto> AreasxProyectos { get; set; }
+        public  ICollection<AreasxProyecto> AreasxProyectos { get; set; }
     }
 }
